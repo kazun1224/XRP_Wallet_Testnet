@@ -1,17 +1,18 @@
 import "src/lib/tailwind.css";
-import type { AppProps } from "next/app";
+import type { CustomAppPage } from "next/app";
 import { MantineProvider } from "@mantine/core";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp: CustomAppPage = ({ Component, pageProps }) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
   return (
     <MantineProvider
       withGlobalStyles
       withNormalizeCSS
       emotionOptions={{ key: "mantine", prepend: false }}
     >
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </MantineProvider>
   );
-}
+};
 
 export default MyApp;
