@@ -36,6 +36,7 @@ const Home: NextPage = () => {
   return (
     <div className="p-20">
       <h1>hello world</h1>
+      <Link href={pagesPath.addAccount.$url()}><a className="bg-black text-white">MakeAccount</a></Link>
       <form onSubmit={getMyWallet}>
         <label htmlFor="seed">seed</label>
         <input type="text" name="seed" id="seed" />
