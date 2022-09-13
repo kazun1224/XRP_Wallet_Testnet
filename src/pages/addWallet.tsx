@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
 import { ComponentProps, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
-import Link from "next/link";
-import { pagesPath } from "src/utils/$path";
 
 type WalletDetail = {
   address: string;
@@ -12,19 +10,13 @@ type WalletDetail = {
   balance: string;
 };
 
-const Home: NextPage = () => {
+const MakeAccount: NextPage = () => {
   const [myWallet, setMyWallet] = useState<WalletDetail>();
-  const getMyWallet: ComponentProps<"form">["onSubmit"] = async (event) => {
+  const MakeAccount: ComponentProps<"form">["onSubmit"] = async (event) => {
     event.preventDefault();
-    const seed: string = event.currentTarget.seed.value;
-    console.log(seed);
     const options: AxiosRequestConfig = {
-      // here
-      url: "/api/getWallet",
+      url: "/api/makeAccount",
       method: "POST",
-      data: {
-        seed,
-      },
     };
 
     const { data } = await axios(options);
@@ -35,12 +27,9 @@ const Home: NextPage = () => {
 
   return (
     <div className="p-20">
-      <h1>hello world</h1>
-      <Link href={pagesPath.addAccount.$url()}><a className="bg-black text-white">MakeAccount</a></Link>
-      <form onSubmit={getMyWallet}>
-        <label htmlFor="seed">seed</label>
-        <input type="text" name="seed" id="seed" />
-        <button className="bg-green-500">Connect!!</button>
+      <h1>新しいウォレットの作成</h1>
+      <form onSubmit={MakeAccount}>
+        <button className="bg-green-500">Make you new wallet!!</button>
       </form>
 
       <hr />
@@ -53,4 +42,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default MakeAccount;
