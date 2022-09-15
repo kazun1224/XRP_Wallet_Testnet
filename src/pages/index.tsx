@@ -12,14 +12,14 @@ type WalletDetail = {
 };
 
 const Home: CustomNextPage = () => {
-  const wallet = {
+  const initialWallet = {
     address: "",
     publicKey: "",
     privateKey: "",
     seed: "",
     balance: "",
   };
-  const [myWallet, setMyWallet] = useState<WalletDetail>(wallet);
+  const [myWallet, setMyWallet] = useState<WalletDetail>(initialWallet);
   const getMyWallet: ComponentProps<"form">["onSubmit"] = async (event) => {
     event.preventDefault();
     const seed: string = event.currentTarget.seed.value;
@@ -36,12 +36,12 @@ const Home: CustomNextPage = () => {
     setMyWallet(data);
   };
 
-  const transfer: ComponentProps<"form">["onSubmit"] = async (event) => {
+  const sendDestination: ComponentProps<"form">["onSubmit"] = async (event) => {
     event.preventDefault();
     const amount = event.currentTarget.amount.value;
     const destination = event.currentTarget.destination.value;
     const options: AxiosRequestConfig = {
-      url: "/api/MoneyTransfer",
+      url: "/api/sendXRP",
       method: "POST",
       data: {
         seed: myWallet?.seed,
@@ -124,7 +124,7 @@ const Home: CustomNextPage = () => {
           XRPの送金
         </h2>
         {myWallet.address !== "" ? (
-          <form onSubmit={transfer}>
+          <form onSubmit={sendDestination}>
             <div>
               <label
                 htmlFor="destination"
