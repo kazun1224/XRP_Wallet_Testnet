@@ -11,12 +11,12 @@ type WalletDetail = {
   balance: string;
 };
 
-const MakeAccount: CustomNextPage = () => {
+const Create: CustomNextPage = () => {
   const [myWallet, setMyWallet] = useState<WalletDetail>();
-  const MakeAccount: ComponentProps<"form">["onSubmit"] = async (event) => {
+  const createNewAccount: ComponentProps<"form">["onSubmit"] = async (event) => {
     event.preventDefault();
     const options: AxiosRequestConfig = {
-      url: "/api/makeAccount",
+      url: "/api/createAccount",
       method: "POST",
     };
 
@@ -38,7 +38,7 @@ const MakeAccount: CustomNextPage = () => {
             <br />
             アカウント情報はメモをして大事に補完してね
           </p>
-          <form onSubmit={MakeAccount} className="mt-5">
+          <form onSubmit={createNewAccount} className="mt-5">
             <button className="mt-5 block rounded border-0 bg-sky-500 py-2 px-6 text-lg text-white hover:bg-sky-600 focus:outline-none">
               作成する
             </button>
@@ -88,6 +88,6 @@ const MakeAccount: CustomNextPage = () => {
   );
 };
 
-MakeAccount.getLayout = (page) => <Layout>{page}</Layout>;
+Create.getLayout = (page) => <Layout>{page}</Layout>;
 
-export default MakeAccount;
+export default Create;

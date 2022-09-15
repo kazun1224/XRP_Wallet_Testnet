@@ -13,7 +13,7 @@ export const Header: FC = () => {
             ホームに戻る
           </a>
         </Link>
-          <Link href={pagesPath.addWallet.$url()}>
+          <Link href={pagesPath.create.$url()}>
             <a className="block rounded border-0 bg-sky-500 py-2 px-6 text-lg text-white hover:bg-sky-600 focus:outline-none">
               アカウントを作成
             </a>
